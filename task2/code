@@ -1,0 +1,42 @@
+mysql> CREATE DATABASE intern_training_db;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE intern_training_db;
+Database changed
+
+mysql> CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    date_of_birth DATE NOT NULL,
+    mobile_number VARCHAR(15) UNIQUE
+);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO students
+    (first_name, last_name, email, date_of_birth, mobile_number)
+    VALUES ('Rama', 'Kumar', 'rama.kumar@gmail.com', '2002-05-14', '9876543210');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM students;
++------------+------------+-----------+----------------------+---------------+---------------+
+| student_id | first_name | last_name | email                | date_of_birth | mobile_number |
++------------+------------+-----------+----------------------+---------------+---------------+
+| 1          | Rama       | Kumar     | rama.kumar@gmail.com | 2002-05-14    | 9876543210    |
++------------+------------+-----------+----------------------+---------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO students
+    (first_name, last_name, email, date_of_birth)
+    VALUES ('Amit', 'Sharma', 'rama.kumar@gmail.com', '2001-03-10');
+ERROR 1062 (23000): Duplicate entry 'rama.kumar@gmail.com' for key 'students.email'
+
+mysql> ALTER TABLE students ADD COLUMN enrollment_date DATE;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> ALTER TABLE students RENAME COLUMN mobile_number TO phone_number;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> ALTER TABLE students DROP COLUMN phone_number;
+Query OK, 0 rows affected (0.01 sec)
